@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+
+    <h1>Vite App</h1>
+    <script>
+      const products = [
+        {pno:1, pname:'아메리카노', price: 1000},
+        {pno:2, pname:'라떼', price: 2000},
+        {pno:3, pname:'카푸치노', price: 3000},
+        {pno:4, pname:'에스프레소', price: 4000},
+        {pno:5, pname:'아이스', price: 5000},
+      ]
+
+      // for (const {pno,pname, price} of products){
+      //   console.log(pno, pname, price)
+      //
+      // }
+      const result = products.find(a=>a.price>=3000)
+
+      console.log(result)
+
+
+      let cart = [
+        {pno:1, qty:2},
+        {pno:2, qty:3},
+        {pno:3, qty:1},
+      ]
+      // 삭제 3
+      // cart = cart.filter((item) => item.pno!==3)
+      //
+      // console.log(cart)
+
+      //1번 상품 3개 추가
+      // const item1 = cart.find(item=>item.pno === 1)
+      //
+      // if(item1){
+      //   item1.qty += 3
+      // }else{
+      //    cart.push({pno:1, qty:3})
+      // }
+      //
+      // console.log(cart)
+
+      //항목별 금액 구하기
+      cart.every(item =>{
+        const {pno, qty} = item //비구조화 할당
+
+        const total = products.find(p => p.pno === pno).price * qty
+
+        item.total = total
+        return item
+      })
+
+      console.log(cart)
+      console.log("----------------------------")
+
+      //전체 금액 구하기
+      cart.reduce((a,b)=>{
+        return a + b.total
+      },0)
+
+      console.log()
+    </script>
+
+
+
+  </body>
+</html>
